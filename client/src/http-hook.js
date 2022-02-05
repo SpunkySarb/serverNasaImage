@@ -16,18 +16,19 @@ const useHttp = (url) => {
             const response = await fetch(url);
             //throwing error
             if (!response.ok) {
-                throw new Error("The date should be older than today's Date...");
+                throw new Error("OOPS.. The date should be between June, 16, 1995 and  today's Date...");
             }
                 
             const data = await response.json();
                 newResponse(data);
-                setLoading(false);
+                
 
             } catch (error) {
 
                 setError(error.message);
 
-            }
+        }
+        setLoading(false);
         },[url]);
 
    

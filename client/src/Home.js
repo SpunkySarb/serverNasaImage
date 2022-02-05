@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import LoadImage from './LoadImage.js';
 import { useState, useEffect } from 'react';
 import useHttp from './http-hook';
+import Button from './Button';
+
 const Home = () => {
 
  
@@ -76,7 +78,7 @@ const Home = () => {
             <br /><br />
             <h5 className="w3-text-White w3-text w3-center"><b>SELECT DAY</b></h5>
             <form className="w3-container w3-center w3-text-red w3-wide  w3-black " action="index.html" method="post">
-                <input id="date" max={today()} onInput={dateChangeHandler} type="date" className="w3-wide" defaultValue={today() } />
+                <input id="date" min="1995-06-16" max={today()} onInput={dateChangeHandler} type="date" className="w3-wide" defaultValue={today() } />
             </form>
             <br /><br />
 
@@ -84,7 +86,7 @@ const Home = () => {
             
             {!requestData.loadingStatus && requestData.errorMessage == null && <LoadImage mediaType={requestData.media_type} title={requestData.title} description={requestData.explanation} url={requestData.url} today={today()} />}
 
-            {requestData.loadingStatus && <div  className=" w3-display-middle w3-jumbo w3-spin fa fa-spinner w3-black"></div>}
+            {requestData.loadingStatus && <div  className=" w3-display-middle w3-jumbo w3-spin fa fa-spinner w3-black w3-transparent"></div>}
            
             {!requestData.loadingStatus && requestData.errorMessage && <div className=" w3-center w3-xlarge  w3-black">{requestData.errorMessage}</div>}
 
