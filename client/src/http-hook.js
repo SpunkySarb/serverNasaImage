@@ -21,13 +21,14 @@ const useHttp = (url) => {
                 
             const data = await response.json();
                 newResponse(data);
-                setLoading(false);
+                
 
             } catch (error) {
 
                 setError(error.message);
 
             }
+        setLoading(false);
         },[url]);
 
    
