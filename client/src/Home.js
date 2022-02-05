@@ -76,7 +76,7 @@ const Home = () => {
             <br /><br />
             <h5 className="w3-text-White w3-text w3-center"><b>SELECT DAY</b></h5>
             <form className="w3-container w3-center w3-text-red w3-wide  w3-black " action="index.html" method="post">
-                <input id="date" max={today()} onInput={dateChangeHandler} type="date" className="w3-wide" defaultValue={today() } />
+                <input id="date" min="1995-06-16" max={today()} onInput={dateChangeHandler} type="date" className="w3-wide" defaultValue={today() } />
             </form>
             <br /><br />
 
