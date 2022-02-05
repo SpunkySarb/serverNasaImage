@@ -16,7 +16,7 @@ const useHttp = (url) => {
             const response = await fetch(url);
             //throwing error
             if (!response.ok) {
-                throw new Error("OOPS...\nThe date should be between june 16, 1995  and today's Date.");
+                throw new Error("OOPS.. The date should be between June, 16, 1995 and  today's Date...");
             }
                 
             const data = await response.json();
@@ -27,7 +27,7 @@ const useHttp = (url) => {
 
                 setError(error.message);
 
-            }
+        }
         setLoading(false);
         },[url]);
 
