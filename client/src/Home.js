@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LoadImage from './LoadImage.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useHttp from './http-hook';
-import Button from './Button';
+import NavButtons from './NavButtons';
+import { useSelector, useDispatch } from 'react-redux';
+import { dateActions } from './Store';
 
 const Home = () => {
 
+
+    const dateState = useSelector((state)=> state.date);
+    const currentDate = useRef();
+   
+    const dateDispatch = useDispatch();
  
     const today = () => {
 
@@ -37,12 +44,13 @@ const Home = () => {
         return dated;
     }
 
-
+ 
     
    
     useEffect(() => {
-        updateURL("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + today()); 
-    }, []);
+        const date = currentDate.current.value;
+        updateURL("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + date); 
+    }, [dateState]);
 
     const [URL, updateURL] = useState("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + today());
 
@@ -54,9 +62,10 @@ const Home = () => {
 
 
     const dateChangeHandler = () => {
-        let dateChosen = document.getElementById('date').value;
+      
+        let dateChosen = currentDate.current.value;
   
-
+        dateDispatch(dateActions.setDate({ selectedDate: dateChosen }));
 
         updateURL("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + dateChosen);
 
@@ -66,10 +75,13 @@ const Home = () => {
     }
 
     return (
-
+        <>
+        <NavButtons />
         <div>
+
+            
             <meta charSet="utf-8" />
-            <title>Galaxy</title>
+            
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
             <div className="w3-container w3-round w3-red w3-card-4 w3-large w3-center w3-padding w3-wide">
@@ -78,7 +90,7 @@ const Home = () => {
             <br /><br />
             <h5 className="w3-text-White w3-text w3-center"><b>SELECT DAY</b></h5>
             <form className="w3-container w3-center w3-text-red w3-wide  w3-black " action="index.html" method="post">
-                <input id="date" min="1995-06-16" max={today()} onInput={dateChangeHandler} type="date" className="w3-wide" defaultValue={today() } />
+                    <input ref={currentDate} id="date" min="1995-06-16" max={today()}  onChange={dateChangeHandler} type="date" className="w3-wide" value={ dateState }  />
             </form>
             <br /><br />
 
@@ -97,7 +109,7 @@ const Home = () => {
                 <h6>Developed by Sarbjeet Singh</h6>
             </div>
         </div>
-        
+        </>
         );
 
 
