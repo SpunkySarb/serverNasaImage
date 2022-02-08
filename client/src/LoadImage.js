@@ -25,10 +25,10 @@ const LoadImage = (props) => {
         
         
         <div className="w3-display-container w3-center w3-black">
-            <h4 className="w3-center"><b>{ props.title}</b></h4>
+            <h4 className=" animate__animated animate__rotateInDownLeft  w3-center"><b>{ props.title}</b></h4>
             { type() }
             <br /><br />
-            <h4 className="w3-left-align">{props.description}</h4>
+            <h4 className="animate__animated animate__slideInUp w3-left-align">{props.description}</h4>
         </div> 
         
         
