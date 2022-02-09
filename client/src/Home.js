@@ -98,7 +98,7 @@ const Home = () => {
             
             {!requestData.loadingStatus && requestData.errorMessage == null && <LoadImage mediaType={requestData.media_type} title={requestData.title} description={requestData.explanation} url={requestData.url} today={today()} />}
 
-            {requestData.loadingStatus && <div  className=" w3-display-middle w3-jumbo w3-spin fa fa-spinner w3-black w3-transparent"></div>}
+            {requestData.loadingStatus && <div  className=" w3-display-middle w3-jumbo w3-spin fa fa-spinner w3-text-white w3-transparent"></div>}
            
             {!requestData.loadingStatus && requestData.errorMessage && <div className=" w3-center w3-xlarge  w3-black">{requestData.errorMessage}</div>}
 
