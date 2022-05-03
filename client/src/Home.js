@@ -105,7 +105,7 @@ const Home = () => {
 
 
             <br /><br />
-            <div className="w3-container w3-center w3-red w3-wide">
+            <div className="w3-container w3-center w3-black w3-wide">
                 <h6>Developed by Sarbjeet Singh</h6>
             </div>
         </div>
